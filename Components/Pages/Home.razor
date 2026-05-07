@@ -1,7 +1,17 @@
-﻿@page "/"
+@page "/"
 
-<PageTitle>Hello World!</PageTitle>
+<PageTitle>Random Picker Trio</PageTitle>
 
-<MudText Typo="Typo.h3" GutterBottom="true">This is a template for WDS2025 students!</MudText>
-<MudText Class="mb-8">Welcome to your new app, powered by MudBlazor and the .NET 10 Template!</MudText>
+<MudText Typo="Typo.h3" GutterBottom="true" Align="Align.Center" Class="mt-8">Random Picker Trio</MudText>
 
+<MudGrid Justify="Justify.Center" Class="mt-8">
+    <MudItem xs="12" md="4">
+        <CoinFlipComponent />
+    </MudItem>
+    <MudItem xs="12" md="4">
+        <DiceComponent />
+    </MudItem>
+    <MudItem xs="12" md="4">
+        <SchereSteinPapierComponent />
+    </MudItem>
+</MudGrid>
