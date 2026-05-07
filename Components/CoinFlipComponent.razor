@@ -1,0 +1,17 @@
+<MudPaper Class="pa-4" Elevation="3">
+    <MudStack AlignItems="AlignItems.Center">
+        <MudText Typo="Typo.h5">Coin Flip</MudText>
+        <MudText Typo="Typo.h1" Color="Color.Primary">@_result</MudText>
+        <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="FlipCoin">Flip Coin</MudButton>
+    </MudStack>
+</MudPaper>
+
+@code {
+    private string _result = "?";
+
+    private void FlipCoin()
+    {
+        var random = new Random();
+        _result = random.Next(2) == 0 ? "Kopf" : "Zahl";
+    }
+}
