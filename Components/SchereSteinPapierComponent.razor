@@ -1,0 +1,48 @@
+<MudPaper Class="pa-4" Elevation="3">
+    <MudStack AlignItems="AlignItems.Center">
+        <MudText Typo="Typo.h5">Schere Stein Papier</MudText>
+        
+        <MudButtonGroup Variant="Variant.Filled" Color="Color.Primary">
+            <MudButton OnClick="@(() => Play("Schere"))">Schere</MudButton>
+            <MudButton OnClick="@(() => Play("Stein"))">Stein</MudButton>
+            <MudButton OnClick="@(() => Play("Papier"))">Papier</MudButton>
+        </MudButtonGroup>
+
+        @if (!string.IsNullOrEmpty(_message))
+        {
+            <MudAlert Severity="@_severity" Variant="Variant.Filled" Class="mt-4">
+                @_message
+            </MudAlert>
+        }
+    </MudStack>
+</MudPaper>
+
+@code {
+    private string _message = "";
+    private Severity _severity = Severity.Info;
+    private readonly string[] _choices = { "Schere", "Stein", "Papier" };
+
+    private void Play(string playerChoice)
+    {
+        var random = new Random();
+        var computerChoice = _choices[random.Next(3)];
+
+        if (playerChoice == computerChoice)
+        {
+            _message = $"Unentschieden! Computer wählte auch {computerChoice}.";
+            _severity = Severity.Warning;
+        }
+        else if ((playerChoice == "Schere" && computerChoice == "Papier") ||
+                 (playerChoice == "Stein" && computerChoice == "Schere") ||
+                 (playerChoice == "Papier" && computerChoice == "Stein"))
+        {
+            _message = $"Gewonnen! Computer wählte {computerChoice}.";
+            _severity = Severity.Success;
+        }
+        else
+        {
+            _message = $"Verloren! Computer wählte {computerChoice}.";
+            _severity = Severity.Error;
+        }
+    }
+}
