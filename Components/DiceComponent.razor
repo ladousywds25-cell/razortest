@@ -1,0 +1,19 @@
+<MudPaper Class="pa-4" Elevation="3">
+    <MudStack AlignItems="AlignItems.Center">
+        <MudText Typo="Typo.h5">Dice Roll</MudText>
+        <MudPaper Width="100px" Height="100px" Class="d-flex align-center justify-center mud-theme-secondary rounded-lg" Elevation="4">
+            <MudText Typo="Typo.h2">@_result</MudText>
+        </MudPaper>
+        <MudButton Variant="Variant.Filled" Color="Color.Secondary" OnClick="RollDice">Roll Dice</MudButton>
+    </MudStack>
+</MudPaper>
+
+@code {
+    private string _result = "?";
+
+    private void RollDice()
+    {
+        var random = new Random();
+        _result = random.Next(1, 7).ToString();
+    }
+}
